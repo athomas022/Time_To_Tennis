@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('./partials/head.ejs', {title: 'Time to Tennis'}) %>
+    <link rel="stylesheet" href="../public/CSS/home.css">
+</head>
+
+<body>
+    <%- include('./partials/nav.ejs') %>
+
+    <main>
+        <section class="find_a_group">
+            <h2>Find a tennis group that fits your tennis goals</h2>
+            <p>Elevate your tennis game by joining vibrant tennis communities near you! Connect with like-minded players, arrange matches, and share your passion for the sport. Whether you're a beginner seeking guidance or a seasoned player craving competitive matches, our platform provides the perfect avenue to find your tennis tribe. Don't miss out on the camaraderie and fun - join a group today!/p>
+            <a href="/groups" class="btn">Search now!</a>
+        </section>
+
+        <section class="reserve_a_court">
+            <h2>Reserve a court and improve that game of yours</h2>
+            <p>Experience hassle-free court reservations at your fingertips! With our intuitive booking system, you can easily reserve tennis courts at your preferred time and location. Whether you're a solo player or planning a match with friends, securing your spot has never been easier. Get ready to hit the courts and unleash your inner champion!</p>
+            <a href="/courts" class="btn">Reserve now!</a>
+        </section>
+
+        <section class="find_an_event">
+            <h2>Find tennis events to join</h2>
+            <p>Dive into the excitement of tennis events happening in your area! From friendly tournaments to exhilarating championships, discover a plethora of tennis activities tailored to your preferences. Whether you're a spectator or a participant, immerse yourself in the electrifying atmosphere of live tennis action. Explore our comprehensive event listings and ignite your passion for the game!</p>
+            <a href="/events" class="btn">Search now!</a>
+        </section>
+
+
+        <section class="become_a_member">
+            <h2>Become a member to stay connected to the tennis family</h2>
+            <p>Unlock exclusive benefits and elevate your tennis experience by becoming a member of our app! Gain access to premium features, such as personalized match recommendations, advanced booking options, and member-only discounts. Stay updated with the latest tennis news, tips, and trends curated just for you. Join our community of tennis enthusiasts and take your game to new heights!</p>
+            <a href="/members" class="btn">Join now!</a>
+        </section>
+
+    </main>
+
+    <%- include('./partials/footer.ejs') %>
+</body>
+
+</html>

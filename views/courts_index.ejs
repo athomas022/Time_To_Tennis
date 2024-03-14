@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('./partials/head.ejs', {title: 'Courts'}) %>
+    <link rel="stylesheet" href="../public/CSS/index.css">
+</head>
+
+<body>
+    <%- include('./partials/nav.ejs') %>
+
+    <section class="courts_header">
+        <h2>Reserve your court</h2>
+        <h3>Welcome tennis enthusiast. Explore and Reserve Your Perfect Match!Browse through our comprehensive list of available tennis courts ready for reservation. Whether you're seeking a pristine indoor court or a sun-drenched outdoor setting, discover the ideal spot to unleash your passion for tennis. Get ready to elevate your game and book your next match or practice with ease!"</h3>
+    </section>
+
+    <main>
+        <section class="courts_listings">
+            <ul>
+                <% courts.forEach(court, index) =>{ %>
+                <li>
+                    <figure>
+                        <img src="<%= pet.photo %>">
+                        <figcaption>
+                            <h4><%= pet.name %></h4>
+                            <p><%= pet.breed %>, <%= pet.age %> year(s) old, <%= pet.state %></p>
+                            <a href="/pets/<%= pet._id %>">Learn More</a>
+                        </figcaption>
+                    </figure>
+                </li>
+                <% } %>
+            </ul>
+        </section>
+    </main>
+
+    <%- include('./partials/footer.ejs') %>
+</body>
+
+</html>
