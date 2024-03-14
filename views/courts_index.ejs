@@ -20,11 +20,11 @@
                 <% courts.forEach(court, index) =>{ %>
                 <li>
                     <figure>
-                        <img src="<%= pet.photo %>">
+                        <img src="<%= courts.img %>">
                         <figcaption>
-                            <h4><%= pet.name %></h4>
-                            <p><%= pet.breed %>, <%= pet.age %> year(s) old, <%= pet.state %></p>
-                            <a href="/pets/<%= pet._id %>">Learn More</a>
+                            <h4><%= courts.club_name %></h4>
+                            <p><%= courts.court_description %></p>
+                            <a href="/courts/<%= courts._id %>">Click here to view the club details</a>
                         </figcaption>
                     </figure>
                 </li>

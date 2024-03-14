@@ -7,10 +7,13 @@ const connectLiveReload = require("connect-livereload");
 const courtsController = require('./controllers/courtsController')
 const eventsController = require('./controllers/eventsController')
 const groupsController = require('./controllers/groupsController')
-const membersController = require('./controllers/groupsController')
+const membersController = require('./controllers/membersController')
+const sessionsController = require('./controllers/sessionsController')
 
 
-const db = require('./config/database')
+
+const db = require('./config/database');
+const isAuthenticated = require('./controllers/isAuthenticatedController');
 
 const app = express();
 
@@ -29,6 +32,18 @@ app.set('views', path.join(__dirname, 'views'))
 // MIDDELWARE
 app.use(express.static('public'))
 app.use(connectLiveReload());
+
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+
+app.use(
+    session({
+      secret: process.env.SECRET, 
+      resave: false, 
+      saveUninitialized: false
+    })
+  )
+
 
 //MOUNT ROUTES
 app.get('/', function (req, res) {
@@ -76,18 +91,8 @@ app.use("/courts", courtsController)
 app.use("/events", eventsController)
 app.use("/groups", groupsController)
 app.use("/members", membersController)
-
-app.use(
-    session({
-      secret: process.env.SECRET, 
-      resave: false, 
-      saveUninitialized: false
-    })
-  )
-
-// app.use(express.json())
-// app.use(express.urlencoded({ extended: true }))
-
+app.use('/sessions', sessionsController)
+app.use(isAuthenticated)
 
 
 app.listen(process.env.PORT, function () {
