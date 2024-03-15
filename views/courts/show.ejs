@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('./partials/head.ejs', {title: `${pet.name} | Furever Friends`}) %>
+    <link rel="stylesheet" href="/../public/CSS/index.css">
+</head>
+
+<body>
+    <%- include('./partials/nav.ejs') %>
+
+    <div>
+        <img src="<%= courts.img %>%>">
+        <h2 class="court"><%= courts.club_name %></h2>
+        <section>
+            <p><strong>Description:</strong> <%= `${courts.court_description}. Zip code = ${courts.zip_code} %></p>
+            <p><strong>Amenities:</strong> <%= `The court is ${courts.court_type}. It has ${courts.amenities_available} and is ${court/court_accesibility}`%></p>
+            <p><strong>Scheduling policy</strong> <%= `${courts.court_scheduling_policy}. The reservation fees are ${courts.reservation_fees} and is costs ${courts.cancellation_fees} to cancel the reservation` %></p>
+            <p><strong>Reserve a court:</strong>    
+                <%= courts.forEach (court, id) => {%>
+                    <li>
+                        <a href=<%=`/courts/${id}`%>><%= court.court_number%></a>
+                    </li>
+                    <% });%>
+            </p>
+
+  
+        </section>
+    </div>
+
+    <%- include('./partials/footer.ejs') %>
+</body>
+
+</html>

@@ -12,8 +12,10 @@ module.exports = {
     Events: require('../models/events'),
     Groups: require('../models/groups'),
     Members: require('../models/members'),
+    Timeslot: require("../models/timeslot"),
     seedCourts: require("./courtsSeed"),
     seedEvents: require("./eventsSeed"),
     seedGroups: require("./groupsSeed"),
     seedMembers: require("./membersSeed"),
+    seedtimeslot: require("./timeslotSeed")
 }

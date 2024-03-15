@@ -6,7 +6,7 @@ const router = express.Router();
 router.get('/', function (req, res) {
     // Courts.find({})
     //     .then(courts => res.json(courts))
-    res.render("../views/courts_index")
+    res.render("../views/courts/index.ejs")
 })
 
 //COURTS SHOW PAGE

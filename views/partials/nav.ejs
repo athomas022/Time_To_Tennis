@@ -3,16 +3,16 @@
     <nav>
         <ul>
             <li><a href="/">Home</a></li>
-            <li><a href="/gourts">Reserve a court</a></li>
+            <li><a href="/courts">Reserve a court</a></li>
             <li><a href="/groups">Join a group</a></li>
-            <% if (currentMember) {%>
+            <% if (currentMember) { %>
             <li class="nav-link">Welcome <%= currentMember.username %></li>
             <li><a href = "/members/new"> Become a member</a></li>
-            <li><form href="/sessions/?_method=DELETE" method="POST">My Account
+            <li><form action="/sessions/?_method=DELETE" method="POST">My Account
              <input type ="submit" value="logout"/> 
             </form>
         </li>
-        <%  } else %>
+        <%  } else { %>
         <li><a class="nav-link" href="/members/new">Sign Up</a></li>
         <li><a class="nav-link" href="/sessions/new">Log In</a></li>
         <% } %>

@@ -18,7 +18,7 @@ const isAuthenticated = require('./controllers/isAuthenticatedController');
 const app = express();
 
 const liveReloadServer = livereload.createServer();
-liveReloadServer.server.once("connection", () => {e
+liveReloadServer.server.once("connection", () => {
     setTimeout(() => {
         liveReloadServer.refresh("/");
     }, 100);
@@ -46,8 +46,9 @@ app.use(
 
 
 //MOUNT ROUTES
-app.get('/', function (req, res) {
-    res.send('This is the home page')
+app.get('/', function (req, res){
+    const currentMember = req.session.currentMember;// *Cross check this against the lessons*
+    res.render('../views/home.ejs', {currentMember: currentMember}) //*Cross check this agains the lessons*
 });
 
 app.get("/seed", function (req, res){
@@ -82,19 +83,24 @@ app.get("/seed", function (req, res){
                 .then(addedMembers => {
                     console.log(`Added ${addedMembers.length} members to the database`)
                 })
+            });
+        db.Timeslot.deleteMany({})
+        .then(removedTimeslotData => {
+            console.log(`Removed ${removedTimeslotData.deletedCount} court slots from the database`)
+            db.Timeslot.insertMany(db.seedMembers)
+                .then(addedTimeslots => {
+                    console.log(`Added ${addedTimeslots.length} court slots to the database`)
+                })        
         })   
-    });
-
-
-
+});
+    
+app.use('/sessions', sessionsController)
+// app.use(isAuthenticated)
 app.use("/courts", courtsController)
 app.use("/events", eventsController)
 app.use("/groups", groupsController)
 app.use("/members", membersController)
-app.use('/sessions', sessionsController)
-app.use(isAuthenticated)
-
 
 app.listen(process.env.PORT, function () {
-    console.log('Express is listening to port', process.env.PORT);
+    console.log('Express is listening to port', process.env.PORT)
 });

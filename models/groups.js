@@ -6,6 +6,7 @@ const groupsSchema = new mongoose.Schema({
     group_description: String,
     group_type: String,
     group_membership_criteria: String,
+    // group_courts: [{type: mongoose.Types.ObjectId, ref:"courts", }],
     group_courts: [String],
     group_admin: [String],
     group_member_directory: [String],

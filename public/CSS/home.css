@@ -1,0 +1,37 @@
+/* section styles */
+body{
+    background-color: aqua;
+}
+.find_a_group h2{
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+.find_a_group p{
+    margin-bottom: 1rem;
+    font-size: calc(0.5rem + 0.5vw);
+}
+.reserve_a_court h2{
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+.reserve_a_court p{
+    margin-bottom: 1rem;
+    font-size: calc(0.5rem + 0.5vw);
+}
+.find_an_event h2{
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+.find_an_event p{
+    margin-bottom: 1rem;
+    font-size: calc(0.5rem + 0.5vw);
+}
+
+.become_a_member h2{
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+.become_a_member p{
+    margin-bottom: 1rem;
+    font-size: calc(0.5rem + 0.5vw);
+}

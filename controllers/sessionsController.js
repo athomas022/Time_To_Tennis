@@ -4,7 +4,7 @@ const members = require('../models/members');
 
 
 router.get('/new', (req, res) => {
-    res.render('../views/sessions_new.ejs', { 
+    res.render('../views/sessions/new.ejs', { 
         currentMember: req.session.currentMember
     })
 })

@@ -3,40 +3,8 @@ const mongoose = require('mongoose')
 
 const courtsSchema = new mongoose.Schema({
     club_name: String,
-    court: [{
-        court_number: [Number],
-        openslots: [Number],
-        availability: {
-            days: {
-                saturday: {
-                    type: Boolean,
-                },
-                sunday: {
-                    type: Boolean,
-                },
-                monday: {
-                    type: Boolean,
-                },
-                tuesday: {
-                    type: Boolean,
-                },
-                wednesday: {
-                    type: Boolean,
-                },
-                thursday: {
-                    type: Boolean,
-                },
-                friday: {
-                    type: Boolean,
-                },
-            },
-            time: {
-                type: [String],
-                enum: ["08:00:00", "10:00:00", "14:00:00", "16:00:00", "20:00:00"]
-
-            }
-        }
-}],
+    court: [{court_number: [String], open_slots: [Number]
+    }],
     court_type: String,
     court_description: String,
     amenities_available: String,
