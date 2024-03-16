@@ -5,12 +5,8 @@ const router = express.Router();
 const bcrypt = require("bcrypt")
 
 
-//MEMBERS INDEX PAGE
-router.get('/members', function (req, res) {
-    // Members.find({})
-    //     .then(members => res.json(members))
-    res.render('../views/members_index.ejs')
-})
+
+
 
 //MEMBERS NEW PAGE
 router.get('/members/new', function (req, res){
@@ -30,10 +26,8 @@ router.post('/', async (req, res) => {
     }
 })
 
-
-
 //MEMBERS SHOW PAGE
-router.get('/members/:id', function (req, res) {
+router.get('/:_id', function (req, res) {
     Member.findById(req.params.id)
         .then(member => res.json(member))
         .catch(() => res.send('404 Error: Page Not Found'))
