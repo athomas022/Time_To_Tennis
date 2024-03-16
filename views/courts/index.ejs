@@ -2,12 +2,12 @@
 <html lang="en">
 
 <head>
-    <%- include('./partials/head.ejs', {title: 'Courts'}) %>
+    <%- include('../partials/head.ejs', {title: 'Courts'}) %>
     <link rel="stylesheet" href="../public/CSS/index.css">
 </head>
 
 <body>
-    <%- include('./partials/nav.ejs') %>
+    <%- include('../partials/nav.ejs') %>
 
     <section class="courts_header">
         <h2>Reserve your court</h2>
@@ -17,23 +17,24 @@
     <main>
         <section class="courts_listings">
             <ul>
-                <% courts.forEach(court,_id) =>{ %>
+                <% courts.forEach((court, _id) =>{ %>
                 <li>
                     <figure>
-                        <img src="<%= courts.img %>">
+                        <img src="<%=court.img %>"/ style="width: 250px; height: 250px"></br>
                         <figcaption>
-                            <h4><%= courts.club_name %></h4>
-                            <p><%= courts.court_description %></p>
-                            <a href="/courts/<%= courts._id %>">Click here to view the club details</a>
+                            <h4><%= court.club_name %></h4>
+                            <p><%= court.court_description %></p>
+                            <!-- <p><%= court._id %></p> -->
+                            <a href="/courts/<%=court._id %>">Click here to view the club details</a>
                         </figcaption>
                     </figure>
                 </li>
-                <% } %>
+                <% }) %>
             </ul>
         </section>
     </main>
 
-    <%- include('./partials/footer.ejs') %>
+    <%- include('../partials/footer.ejs') %>
 </body>
 
 </html>

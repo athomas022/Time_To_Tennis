@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 
 const timeslotSchema = new mongoose.Schema({ 
-club: String,
+club_id: {type: mongoose.Types.ObjectId, ref:"courts"},
 court: String,
 open_slots: Number,
 slot_date_and_time: {
@@ -11,5 +11,5 @@ slot_date_and_time: {
 }
 })
 
-const Timeslot = mongoose.model('timeslot', timeslotSchema)
-module.exports = Timeslot;
+const Timeslots = mongoose.model('timeslot', timeslotSchema)
+module.exports = Timeslots;

@@ -28,7 +28,6 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'))
 
 
-
 // MIDDELWARE
 app.use(express.static('public'))
 app.use(connectLiveReload());
@@ -47,8 +46,7 @@ app.use(
 
 //MOUNT ROUTES
 app.get('/', function (req, res){
-    const currentMember = req.session.currentMember;// *Cross check this against the lessons*
-    res.render('../views/home.ejs', {currentMember: currentMember}) //*Cross check this agains the lessons*
+    res.render('../views/home.ejs', {currentMember: req.session.currentMember}) 
 });
 
 app.get("/seed", function (req, res){
@@ -84,10 +82,10 @@ app.get("/seed", function (req, res){
                     console.log(`Added ${addedMembers.length} members to the database`)
                 })
             });
-        db.Timeslot.deleteMany({})
-        .then(removedTimeslotData => {
-            console.log(`Removed ${removedTimeslotData.deletedCount} court slots from the database`)
-            db.Timeslot.insertMany(db.seedMembers)
+        db.Timeslots.deleteMany({})
+        .then(removedTimeslotsData => {
+            console.log(`Removed ${removedTimeslotsData.deletedCount} court slots from the database`)
+            db.Timeslots.insertMany(db.seedtimeslots)
                 .then(addedTimeslots => {
                     console.log(`Added ${addedTimeslots.length} court slots to the database`)
                 })        
