@@ -9,9 +9,7 @@ const eventsController = require('./controllers/eventsController')
 const groupsController = require('./controllers/groupsController')
 const membersController = require('./controllers/membersController')
 const sessionsController = require('./controllers/sessionsController')
-
-
-
+const methodOverride = require('method-override') 
 const db = require('./config/database');
 const isAuthenticated = require('./controllers/isAuthenticatedController');
 
@@ -31,7 +29,7 @@ app.set('views', path.join(__dirname, 'views'))
 // MIDDELWARE
 app.use(express.static('public'))
 app.use(connectLiveReload());
-
+app.use(methodOverride('_method'));
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
@@ -46,7 +44,7 @@ app.use(
 
 //MOUNT ROUTES
 app.get('/', function (req, res){
-    res.render('../views/home.ejs', {currentMember: req.session.currentMember}) 
+    res.render('home.ejs', {currentMember: req.session.currentMember}) 
 });
 
 app.get("/seed", function (req, res){
@@ -93,7 +91,7 @@ app.get("/seed", function (req, res){
 });
     
 app.use('/sessions', sessionsController)
-// app.use(isAuthenticated)
+app.use(isAuthenticated)
 app.use("/courts", courtsController)
 app.use("/events", eventsController)
 app.use("/groups", groupsController)

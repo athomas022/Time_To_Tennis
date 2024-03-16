@@ -9,7 +9,7 @@ const members = [
       member_age: 28,
       member_skill: "Intermediate",
       member_gender: "F",
-      member_preferred_court: "Outdoor",
+      member_preferred_court: "Outdoors",
     },
    
     ]

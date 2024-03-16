@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head.ejs', {title: `Edit ${member.name}`}) %>
+    <link rel="stylesheet" href="/styles/index.css">
+</head>
+
+<body>
+    <%- include('../partials/nav.ejs') %>
+
+    <section class="header">
+        <h2>Edit your member account</h2>
+    </section>
+
+    <form method="POST" action="/members/<%=member._id %>?_method=PUT">
+        <!-- Name input -->
+        <label for="firstname">FirstName:</label>
+        <input type="text" id="name" name="member_name" value="<%=member.member_name %>" required>
+        <br>
+        <!-- Membership type input -->
+        <label for="membership type">Membership type:</label>
+        <input type="text" id="type" name="membership_type" value="<%=`Regular`%>" required>
+        <br>
+         <!-- Zip code input -->
+         <label for="membership zip code">Membership zip code:</label>
+         <input type="text" id="zip code" name="member_zip_code" value="<%=member.member_zip_code %>" required>
+         <br>
+        <!-- Username input -->
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" value="<%=member.username %>" required>
+        <br>
+          <!-- Password input -->
+          <label for="password">Password:</label>
+          <input type="text" id="password" name="password" value="<%=member.password %>" required>
+          <br>
+          <!-- Picture input -->
+          <label for="picture">Picture:</label>
+          <input type="text" id="picture" name="member_picture" value="<%=member.member_password %>" required>
+          <br>
+           <!-- Member bio input -->
+           <label for="Bio">Bio:</label>
+           <input type="text" id="bio" name="member_bio" value="<%=member.member_bio %>" required>
+           <br>
+           <!-- Member age input -->
+           <label for="Age">Age:</label>
+           <input type="text" id="Age" name="member_age" value="<%=member.member_age %>" required>
+           <br>
+         <!-- Member gender input -->
+         <label for="gender">Gender:</label>
+         <select id="gender" name="member_gender" required>
+             <% if (member.member_gender === "F") { %>
+             <option value="F" selected>F</option>
+             <option value="M">M</option>
+             <% } else { %>
+             <option value="F">F</option>
+             <option value="M" selected>M</option>
+             <% } %>
+         </select>
+         <br>
+           <!-- Member skill input -->
+           <label for="Skill">Skill:</label>
+           <select id="skill" name="member_skill">
+                <option value="Beginner">Beginner</option>
+                <option value="Intermediate">Intermediate</option>
+                <option value="Advanced">Advanced</option>
+                <option value="Pro">Pro</option>
+        </select>
+           <br>
+           <!-- Member preferred court input -->
+           <label for="preferred court">Preferred court:</label>
+           <select id="preferred court" name="member_preferred_court">
+                <option value="Outdoors">Outdoors</option>
+                <option value="Indoors">Indoors</option>
+        </select>
+            <br>
+        <input type="submit" value="Push Edits">
+    </form>
+    <%- include('../partials/footer.ejs') %>
+</body>
+
+</html>

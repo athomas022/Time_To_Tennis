@@ -4,7 +4,11 @@
         <ul>
             <li><a href="/">Home</a></li>
             <li><a href="/courts">Reserve a court</a></li>
-            <li><a href="/member">My Account</a></li>
+            <% if (currentMember) { %>
+                <li><a href="/members/<%=currentMember._id%>">My Account</a></li>
+            <%  } else { %>
+                <li><a href="/sessions/new">Log In</a></li>
+            <% } %>
         </ul>
     </nav>
 </footer>

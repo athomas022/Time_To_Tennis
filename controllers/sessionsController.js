@@ -32,5 +32,23 @@ router.post('/', async (req, res) => {
         res.redirect('/')
       })
     })
-    
+
+ //ADD THE NEW MEMBER
+  router.get('/members/new', function (req, res){
+    res.render("members/new.ejs",  {currentMember: req.session.currentMember } )
+})
+
+//CREATE NEW MEMBERS
+router.post('/members', async (req, res) => {
+  try{
+      req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10))
+      const newMember = await members.create(req.body)
+      req.session.currentMember = newMember
+      console.log(newMember)
+      res.redirect('/')
+  }catch(err){
+      console.log(err)
+  }
+})
+
     module.exports = router

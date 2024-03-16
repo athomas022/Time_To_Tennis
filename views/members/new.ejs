@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
+    <%- include('../partials/head.ejs', {title: 'Sign up'}) %>
+    <link rel="stylesheet" href="/styles/index.css">
 </head>
+
 <body>
-    <%- include('../partials/nav') %>
+    <%- include('../partials/nav.ejs') %>
     <h1>Sign Up</h1>
-    <form action="/members" method="POST">
+    <form action="/sessions/members" method="POST">
         Username: <input required type="text" name="username"/><br>
         Password: <input required type="text" name="password"><br>
+        Your First Name: <input required type="text" name="member_name"><br>
         <input type="submit" name="" value="Sign Up"/>
     </form>
+    <%- include('../partials/footer.ejs') %>
 </body>
 </html>
