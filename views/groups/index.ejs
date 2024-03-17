@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head.ejs', {title: 'All Groups'}) %>
+    <link rel="stylesheet" href="/styles/index.css">
+</head>
+
+<body>
+    <%- include('../partials/nav.ejs') %>
+
+    <section class="groups_header">
+        <h3>Browse our groups and join one that you like</h3>
+        <h4>Welcome tennis enthusiast. Embark on an exhilarating journey through the vibrant world of tennis as you delve into the local tennis groups in your area. Join fellow enthusiasts as you traverse the courts, honing your skills, and forging lasting friendships amidst the thrilling backhands and volleys. From casual meetups to competitive leagues, discover a diverse community united by a shared passion for the sport. Whether you're a seasoned player seeking new challenges or a beginner eager to learn, the tennis groups in your neighborhood offer a welcoming and supportive environment to elevate your game and ignite your love for tennis."</h4>
+    </section>
+    <main>
+        <section class="groups_listings">
+            <ul>
+                <% groups.forEach((group, _id) =>{ %>
+                <li>
+                            <h4><%= group.group_name %></h4>
+                            <p><%=`${group.group_description}.The group is based in ${group.zip_code}`%></p>
+                            <p> <%= `Members joined: ${group.group_member_directory.length}` %>
+                            </p>
+                            <a href="/groups/<%=group._id %>">Click here to explore the group and join the group</a>
+                </li>
+                <% }) %>
+            </ul>
+        </section> 
+    </main>
+
+    <%- include('../partials/footer.ejs') %>
+</body>
+
+</html>

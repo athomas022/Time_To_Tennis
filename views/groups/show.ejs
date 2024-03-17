@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head.ejs', {title: `${group.group_name}`}) %>
+    <link rel="stylesheet" href="/styles/index.css">
+</head>
+
+<body>
+    <%- include('../partials/nav.ejs') %>
+
+    <div>
+        <h2 class="group"><%= group.group_name %></h2>
+        <section>
+            <p><strong>Description:</strong> <%= `${group.group_description} and located in ${group.zip_code}` %></p>
+            <p><strong>Membership criteria:</strong> <%= `Membersip is open to ${group.group_type} and ${group.  group_membership_criteria}`%></p>
+            <p><strong>Group Rules:</strong> <%= `${group.group_rules}.` %></p>
+            <p><strong>The courts we play in are:</strong> <%= `${group.group_courts}.` %></p> <!-- show the court names with links to the courts -->
+            <p><strong>Meet your fellow members:</strong> <%= `${group.group_member_directory}.`%></p><!-- show the member pictures with links to members show page; should not show the edit or delete page -->
+            <p><strong>Upcoming events:</strong> <%= `${group.group_upcoming_events}.`%></p><!-- show the events with links to the events show page -->
+            <p><strong>Announcements:</strong> <%= `${group.announcements}.`%></p>
+            <p>For further details, get in touch with ${group.group_admin}</p>          
+            <a href="/groups/<%=%>">Join the group</a>
+            
+        </section>
+    </div>
+
+    <%- include('../partials/footer.ejs') %>
+</body>

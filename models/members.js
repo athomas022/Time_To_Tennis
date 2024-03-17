@@ -13,9 +13,9 @@ const membersSchema = new mongoose.Schema({
     member_skill: {type: String, enum:["Beginner", "Intermediate", "Advanced", "Pro"]},
     member_gender: {type: String, enum:["F", "M"]},
     member_preferred_court: {type: String,enum: ["Outdoors", "Indoors"]}, 
-    member_groups: [{type: mongoose.Types.ObjectId, ref:"groups"}], default: ["No groups joined"],
-    court_reservation: [{type: mongoose.Types.ObjectId, ref:"timeslot"}], default: ["No courts reserved"],
-    event_reservation: [{type: mongoose.Types.ObjectId, ref:"events"}], default: ["No events reserved"], 
+    member_groups: [{type: mongoose.Types.ObjectId, ref:"Groups"}], default: [{}],
+    court_reservation: [{type: mongoose.Types.ObjectId, ref:"Timeslots"}], default: [{}],
+    event_reservation: [{type: mongoose.Types.ObjectId, ref:"Events"}], default: [{}], 
 });
 
 const Members = mongoose.model('members', membersSchema)
