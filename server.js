@@ -28,7 +28,17 @@ app.set('views', path.join(__dirname, 'views'))
 
 // MIDDELWARE
 app.use(express.static('public'))
-app.use(connectLiveReload());
+if (process.env.ON_HEROKU === 'false') {
+    // Configure the app to refresh the browser when nodemon restarts
+    const liveReloadServer = livereload.createServer();
+    liveReloadServer.server.once("connection", () => {
+        // wait for nodemon to fully restart before refreshing the page
+        setTimeout(() => {
+        liveReloadServer.refresh("/");
+        }, 100);
+    });
+    app.use(connectLiveReload());
+}
 app.use(methodOverride('_method'));
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
