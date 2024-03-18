@@ -44,12 +44,12 @@ router.delete("/:id", (req, res) => {
 //JOIN UPDATE ROUTE
 router.put("/:id/join", function (req, res) {
     //When I click the /id/join, then I need to find the group and add the member object to the member_idrectoyr
-Groups.findOneAndUpdate({_id: req.params.id}, {$addToSet: {group_member_directory: currentMember._id}}, {new:true})
+Groups.findOneAndUpdate({_id: req.params.id}, {$addToSet: {group_member_directory: req.session.currentMember._id}}, {new:true})
     .then((updatedGroup) => {
  //when i click the id/join, then I need to find the member and add the group to the member.
-        Members.findOneAndUpdate({_id: currentMember._id}, {$addToSet: {member_groups: req.params.id}}, {new:true})
+        Members.findOneAndUpdate({_id: req.session.currentMember._id}, {$addToSet: {member_groups: req.params.id}}, {new:true})
     .then((updateMember) => {
-         res.redirect("/groups/"+ req.params.id)
+         res.redirect("/groups/")
         })
     .catch((err) => res.send("The member was not updated"))
     })

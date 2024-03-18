@@ -40,12 +40,12 @@ router.put("/:id/edit", async (req, res) => {
 //EVENTS REGISTERATION ROUTE
 router.put("/:id/register", function (req, res) {
 //When I click the /id/join, I want to delect the count of the slots in the event...
-Events.findByIdAndUpdate(req.params.id, {$inc: {event_slots: -1}}, {new:true})// debugged with chatgpt
-    .then((updatedEvent) => {
+Events.findByIdAndUpdate(req.params.id, {$inc: {event_slots: -1}}, {new:true})// debugged with chatgpt and mangodb documentation
+    .then((event) => {
 // .. and add the event to the members collection for a member
-Members.findOneAndUpdate({_id: currentMember._id}, {$addToSet: {event_reservation: req.params.id}}, {new:true})
+Members.findOneAndUpdate({_id: req.session.currentMember._id}, {$addToSet: {event_reservation: req.params.id}}, {new:true})
     .then((updatedMember) => {
-         res.redirect("/events/"+ req.params.id)
+         res.redirect("/events")
         })
     .catch((err) => res.send("The member was not updated"))
     })
