@@ -15,13 +15,12 @@
             <p><strong>Description:</strong> <%= `${group.group_description} and located in ${group.zip_code}` %></p>
             <p><strong>Membership criteria:</strong> <%= `Membersip is open to ${group.group_type} and ${group.  group_membership_criteria}`%></p>
             <p><strong>Group Rules:</strong> <%= `${group.group_rules}.` %></p>
-            <p><strong>The courts we play in are:</strong> <%= `${group.group_courts}.` %></p> <!-- show the court names with links to the courts -->
-            <p><strong>Meet your fellow members:</strong> <%= `${group.group_member_directory}.`%></p><!-- show the member pictures with links to members show page; should not show the edit or delete page -->
-            <p><strong>Upcoming events:</strong> <%= `${group.group_upcoming_events}.`%></p><!-- show the events with links to the events show page -->
+            <p><strong>The courts we play in are:</strong> <%= `${groupCourts}.` %></p> <!-- show the court names with links to the courts -->
+            <p><strong>Meet your fellow members:</strong> <%= `${groupMemberDirectory} and ${groupAdmin}.`%></p><!-- show the member pictures with links to members show page; should not show the edit or delete page -->
+            <p><strong>Upcoming events:</strong> <%= `${groupEvents}.`%></p><!-- show the events with links to the events show page -->
             <p><strong>Announcements:</strong> <%= `${group.announcements}.`%></p>
-            <p>For further details, get in touch with ${group.group_admin}</p>          
-            <a href="/groups/<%=group._id%>/join>">Join the group</a>
-            
+            <p>For further details, get in touch with <%=`${groupAdmin}` %></p>          
+            <a href="/groups/<%=group._id %>/join?_method=PUT">Join the group</a>
         </section>
     </div>
 

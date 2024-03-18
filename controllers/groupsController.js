@@ -101,7 +101,7 @@ router.get("/:id/join", (req, res) => {
         router.get('/:id', function (req, res) {
             Groups.findById(req.params.id)
                 .then(group=> {
-                    Members.findById(group.group_admin, {member_name: true})
+                    Members.findById(group.group_admin)
                         .then(groupAdminMember => {
                             Promise.all([ //Debuggeed the array for the potentially no values being populated using chatGpt and MDN documentation
                             group.group_member_directory ? Members.find({ _id: { $in: group.group_member_directory } }, { member_name: true }) : [],
@@ -111,7 +111,7 @@ router.get("/:id/join", (req, res) => {
                                 .then(([groupMemberDirectory, groupCourts, groupEvents]) => {
                                 res.render("groups/show.ejs", {
                                 group: group,
-                                groupAdmin: groupAdminMember,
+                                groupAdmin: groupAdminMember.member_name,
                                 groupMemberDirectory: groupMemberDirectory.map(member =>member.member_name),// debugged this using chatGPT to introduce the map function as its an array of objects
                                 groupCourts: groupCourts.map(court=> court.club_name),// debugged this using chatGPT to introduce the map function as its an array of objects
                                 groupEvents: groupEvents.map(event=> event.event_name),// debugged this using chatGPT to introduce the map function as its an array of objects
