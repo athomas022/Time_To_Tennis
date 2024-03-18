@@ -113,8 +113,8 @@ router.get("/:id/join", (req, res) => {
                                 group: group,
                                 groupAdmin: groupAdminMember,
                                 groupMemberDirectory: groupMemberDirectory.map(member =>member.member_name),// debugged this using chatGPT to introduce the map function as its an array of objects
-                                groupCourts: groupCourts.club.map(court=> court.club_name),// debugged this using chatGPT to introduce the map function as its an array of objects
-                                groupEvents: groupEvents.event.map(event=> event.event_name),// debugged this using chatGPT to introduce the map function as its an array of objects
+                                groupCourts: groupCourts.map(court=> court.club_name),// debugged this using chatGPT to introduce the map function as its an array of objects
+                                groupEvents: groupEvents.map(event=> event.event_name),// debugged this using chatGPT to introduce the map function as its an array of objects
                                 currentMember: req.session.currentMember,
                             });
                         })
