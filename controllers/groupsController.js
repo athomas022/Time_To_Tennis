@@ -1,4 +1,4 @@
-const {Groups} = require('../config/database');
+const Groups = require('../config/database');
 const express = require('express');
 const router = express.Router();
 

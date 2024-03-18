@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head.ejs', {title: `${event.event_name}`}) %>
+    <link rel="stylesheet" href="/styles/index.css">
+</head>
+
+<body>
+    <%- include('../partials/nav.ejs') %>
+
+    <div>
+        <h2 class="event"><%= event.event_name %></h2>
+        <section>
+            <p><strong>Event Date:</strong> <%= `${event.event_description}. The event will last ${event.event_duration} hours` %></p>
+            <p><strong>Event Details and rules:</strong> <%= `The event is a ${event.event_format} and is ${event.event_description}. The event is open to ${event.member_skill_level}`%></p>
+            <p><strong>Other things you should know:</strong> <%= `There are ${event.event_slots} slots open currently. The registeration fees are ${event.event_registration_fees} and you will need to have ${event.event_equipment_needed}` %></p>
+            <p><%= `Reach out to ${createdByName} from ${groupName}` %>
+                <% console.log(currentMember.member_name) %>
+            </p>
+            <a href="/events/<%= event._id %>/register">RSVP for the event</a> 
+            <p><% if (createdByName === currentMember.member_name){ %>
+                <form action="/events/<%= event._id %>?_method=DELETE" method="post">
+                    <input type="submit" value="DELETE"/>
+                </form>
+                <form action="/events/<%=event._id %>/edit?_method=PUT" method="put">
+                    <input type="submit" value="EDIT"/>
+                </form>
+                <% } %>
+            </p>
+        </section>
+    </div>
+
+    <%- include('../partials/footer.ejs') %>
+</body>
+
+</html>

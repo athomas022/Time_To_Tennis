@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head.ejs', {title: 'Edit your events'}) %>
+    <link rel="stylesheet" href="/styles/index.css">
+</head>
+
+<body>
+    <%- include('../partials/nav.ejs') %>
+    <section class="header">
+        <h2>Edit your event</h2>
+    </section>
+    <!-- debugged line 15 with Chatgpt -->
+    <% if (event.created_by.toString() === currentMember._id.toString()){ %>
+    <form method="POST" action="/events/<%=event._id %>/edit?_method=PUT"></form>
+        Event Name: <input required type="text" name="event_name" value="<%=event.event_name %>"><br>
+        Date: <input required type="date" name="event_date" value="<%=event.event_date %>"><br>
+        Duration: <input required type="number" name="event_duration" value="<%=event.event_duration %>"><br>
+        Event Description: <input required type="text" name="event_description" value="<%=event.event_description %>"><br>
+        Event Slots: <input required type="number" name="event_slots" value="<%=event.event_slots %>"><br>
+        Event Fees: <input required type="number" name="event_registration_fees" value="<%=event.event_registration_fees%>"><br>
+        <label for="Format">Event format:</label>
+        <select id="format" name="event_format" value="<%=event.event_format%>">
+             <option value="Tournament">Tournament</option>
+             <option value="Instructional">Instructional</option>
+             <option value="Casual Play">Casual Play</option>
+        </select>
+        <label for="Skill">Member Skill:</label>
+        <select id="skills" name="member_skill_level" value="<%=event.member_skill_level%>">
+             <option value="All Levels">All Levels</option>
+             <option value="Beginners Only">Beginners Only</option>
+             <option value="Intermediate Only">Intermediate Only</option>
+             <option value="Advanced Only">Advanced Only</option>
+             <option value="Pro Only">Pro Only</option>
+             <option value="Intermediate +">Intermediate +</option>
+             <option value="Advanced +">Advanced +</option>
+        </select>
+        Equipment needed: <input required type="text" name="event_equipment_needed" value="<%=event.event_equipment_needed%>"><br>
+        Event Rules: <input required type="text" name="event_rules" value="<%=event.event_rules%>"><br>
+        Group organizing the event: <input required type="text" name="organizing_group" value="<%=event.organizing_group%>"><br>
+        Location: <input required type="text" name="court" value="<%=event.court%>"><br>
+        <input type="submit" name="" value="Push the Edits"/>
+    </form>
+    <% } %>
+
+    <%- include('../partials/footer.ejs') %>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head.ejs', {title: 'Events'}) %>
+    <link rel="stylesheet" href="/styles/index.css">
+</head>
+
+<body>
+    <%- include('../partials/nav.ejs') %>
+
+    <section class="events_header">
+        <h2>RSVP to events</h2>
+        <h3>Welcome tennis enthusiast. Game, set, match! Get ready to serve up some fun and competition at our upcoming tennis event. Whether you're a seasoned player or just picking up a racket, join us for an exhilarating day on the courts. RSVP now to secure your spot and let's volley our way to an ace-filled gathering. See you on the court!"</h3>
+    </section>
+
+    <main>
+        <section class="events_listings">
+            <ul>
+                <% events.forEach((event, _id) =>{ %>
+                <li>
+                            <h4><%= event.event_name%></h4>
+                            <p><%= event.event_description %></p>
+                            <p><%= `The event will be on ${event.event_date} and will last ${event.event_duration} hours` %></p>
+                            <!-- <p><%= event._id %></p>
+                            <p><%= event.organizing_group %></p> -->
+                            <a href="/events/<%=event._id %>">Click here to view and RSVP for the events</a>
+                </li>
+                <% }) %>
+            </br>
+        </br>
+    </br>
+                <li>Don't see an event that you like, create an event for you and like minded enthusiats
+                    <a href="/events/new">Create a new event</a>
+                </li>
+               
+            </ul>
+        </section>
+    <%- include('../partials/footer.ejs') %>
+</body>
+
+</html>

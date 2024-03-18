@@ -1,13 +1,14 @@
 const mongoose = require('mongoose')
+const Schema = mongoose.Schema;
 
 
-const eventsSchema = new mongoose.Schema({
+const eventsSchema = new Schema({
     event_name: String,
     event_date: Date,
     event_duration: Number,
     event_description: String,
-    created_by: [{type: mongoose.Types.ObjectId, ref:"Members"}], default: [{}],
-    organizing_group: [{type: mongoose.Types.ObjectId, ref:"Groups"}], default: [{}],
+    created_by: {type: mongoose.Schema.Types.ObjectId, ref:"Members"},
+    organizing_group: {type: mongoose.Schema.Types.ObjectId, ref:"Groups"},
     event_slots: Number,
     event_registration_fees: Number,
     event_format: String,

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head.ejs', {title: 'Create a new event'}) %>
+    <link rel="stylesheet" href="/styles/index.css">
+</head>
+
+<body>
+    <%- include('../partials/nav.ejs') %>
+    <h1>Sign Up</h1>
+     <form action="/events" method="POST">
+        Event Name: <input required type="text" name="event_name"/><br>
+        Date: <input required type="date" name="event_date"><br>
+        Duration: <input required type="number" name="event_duration"><br>
+        Event Description: <input required type="text" name="event_description"><br>
+        Event Slots: <input required type="number" name="event_slots"><br>
+        Event Fees: <input required type="number" name="event_registration_fees"><br>
+        <label for="Format">Event format:</label>
+        <select id="format" name="event_format">
+             <option value="Tournament">Tournament</option>
+             <option value="Instructional">Instructional</option>
+             <option value="Casual Play">Casual Play</option>
+        </select>
+        <label for="Skill">Member Skill:</label>
+        <select id="skills" name="member_skill_level">
+             <option value="All Levels">All Levels</option>
+             <option value="Beginners Only">Beginners Only</option>
+             <option value="Intermediate Only">Intermediate Only</option>
+             <option value="Advanced Only">Advanced Only</option>
+             <option value="Pro Only">Pro Only</option>
+             <option value="Intermediate +">Intermediate +</option>
+             <option value="Advanced +">Advanced +</option>
+        </select>
+        Equipment needed: <input required type="text" name="event_equipment_needed"><br>
+        Event Rules: <input required type="text" name="event_rules"><br>
+        Group organizing the event: <input required type="text" name="organizing_group"><br>
+        Location: <input required type="text" name="court"><br>
+        <input type="submit" name="" value="Create the Event"/>
+    </form>
+    <%- include('../partials/footer.ejs') %>
+</body>
+</html>
