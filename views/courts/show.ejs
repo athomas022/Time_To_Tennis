@@ -16,7 +16,7 @@
             <p><strong>Description:</strong> <%= `${court.court_description}. Zip code = ${court.zip_code}` %></p>
             <p><strong>Amenities:</strong> <%= `The court is ${court.court_type}. It has ${court.amenities_available} and is ${court.court_accesibility}`%></p>
             <p><strong>Scheduling policy</strong> <%= `${court.court_scheduling_policy}. The reservation fees are ${court.reservation_fees} and is costs ${court.cancellation_fees} to cancel the reservation` %></p>
-            <a href="/reservation/<%=court._id%>">Reserve a spot</a> 
+            <a href="reserve/<%=court._id%>/">Reserve a spot</a> 
             
         </section>
     </div>

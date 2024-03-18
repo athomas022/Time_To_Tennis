@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head.ejs', {title: 'Edit your groups'}) %>
+    <link rel="stylesheet" href="/styles/index.css">
+</head>
+
+<body>
+    <%- include('../partials/nav.ejs') %>
+    <section class="header">
+        <h2>Edit your group</h2>
+    </section>
+    <% if (event.created_by.toString() === currentMember._id.toString()){ %>
+    <form method="POST" action="/groups/<%=group._id %>/edit?_method=PUT"></form>
+        Name: <input required type="text" name="group_name" value="<%=group.group_name %>"><br>
+        Description: <input required type="text" name="group_description" value="<%=group.group_description %>"><br>
+        Type: <input required type="text" name="group_type" value="<%=group.group_type %>"><br>
+        Membership Criteria <input required type="text" name="group_membership_criteria" value="<%=group.group_membership_criteria%>"><br>
+        Group courts <input required type="text" name="group_group_courts" value="<%=group.group_courts%>"><br>
+        Members: <input required type="text" name="group_member_directory" value="<%=group.group_member_directory%>"><br>
+        Upcoming Events: <input required type="text" name="group_upcoming_events" value="<%=group.group_upcoming_events%>"><br>
+        Rules: <input required type="text" name="group_rules" value="<%=group.group_rules%>"><br>
+        Announcements: <input required type="text" name="announcements" value="<%=group.announcements%>"><br>
+        Zip code: <input required type="text" name="zip_code" value="<%=group.zip_code%>"><br>
+        <input type="submit" name="" value="Push the Edits"/>
+    </form>
+    <% } else { %>
+     <h2> You are not authorized to edit this group. Please contact your group admin</h2>
+     <% } %>
+    <%- include('../partials/footer.ejs') %>
+</body>
+</html>

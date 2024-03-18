@@ -1,0 +1,45 @@
+/* Added the CSS for nav bar from ChatGPT */
+nav {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    background-color: #0056b3;
+}
+
+nav a {
+    text-decoration: none;
+    color: #fff; 
+    padding: 10px 20px;
+    display: inline-block;
+}
+
+nav a:hover {
+    background-color: #007bff; 
+}
+
+nav h4 {
+    text-decoration: none;
+    color: #fff; 
+    padding: 10px 20px;
+    display: inline-block;
+}
+
+nav form {
+    margin-top: 10px;
+    margin-left: 20px; 
+}
+
+nav input[type="submit"] {
+    background-color: #007bff; 
+    color: #fff; 
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+}
+
+nav input[type="submit"]:hover {
+    background-color: #0056b3; 
+}

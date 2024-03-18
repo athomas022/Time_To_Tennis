@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head.ejs', {title: 'Edit your events'}) %>
+    <link rel="stylesheet" href="/styles/index.css">
+</head>
+
+<body>
+    <%- include('../partials/nav.ejs') %>
+    <section class="header">
+        <h2>Register for the group</h2>
+    </section>
+  
+    <form method="POST" action="/events/<%=id%>/register?_method=PUT">
+        <input type="submit" name="yes" value="YES, I want to join the group"/>
+    </form>
+    <form method="get" action="/groups">
+        <input type="submit" name="no" value="NO, I don't want to join the group"/>
+    </form>
+    <%- include('../partials/footer.ejs') %>
+</body>

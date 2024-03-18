@@ -18,12 +18,12 @@
             <p><%= `Reach out to ${createdByName} from ${groupName}` %>
                 <% console.log(currentMember.member_name) %>
             </p>
-            <a href="/events/<%= event._id %>/register">RSVP for the event</a> 
+            <a href="/events/<%= event._id %>/register?_method=PUT">RSVP for the event</a> 
             <p><% if (createdByName === currentMember.member_name){ %>
                 <form action="/events/<%= event._id %>?_method=DELETE" method="post">
                     <input type="submit" value="DELETE"/>
                 </form>
-                <form action="/events/<%=event._id %>/edit?_method=PUT" method="put">
+                <form action="/events/<%=event._id %>/edit?_method=PUT" method="post">
                     <input type="submit" value="EDIT"/>
                 </form>
                 <% } %>

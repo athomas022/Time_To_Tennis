@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head.ejs', {title: 'Edit your events'}) %>
+    <link rel="stylesheet" href="/styles/index.css">
+</head>
+
+<body>
+    <%- include('../partials/nav.ejs') %>
+    <section class="header">
+        <h2>Register for the event</h2>
+    </section>
+  
+    <form method="POST" action="/events/<%=id%>/register?_method=PUT">
+        <input type="submit" name="yes" value="YES, I understand that I'm registering for this event and will be charged the registeration fees"/>
+    </form>
+    <form method="get" action="/events">
+        <input type="submit" name="no" value="NO, I don't want to be charged for the fees and don't want to register for the fees"/>
+    </form>
+    <%- include('../partials/footer.ejs') %>
+</body>

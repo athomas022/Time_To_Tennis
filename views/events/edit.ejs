@@ -13,7 +13,7 @@
     </section>
     <!-- debugged line 15 with Chatgpt -->
     <% if (event.created_by.toString() === currentMember._id.toString()){ %>
-    <form method="POST" action="/events/<%=event._id %>/edit?_method=PUT"></form>
+    <form method="POST" action="/events/<%=id%>/edit?_method=PUT">
         Event Name: <input required type="text" name="event_name" value="<%=event.event_name %>"><br>
         Date: <input required type="date" name="event_date" value="<%=event.event_date %>"><br>
         Duration: <input required type="number" name="event_duration" value="<%=event.event_duration %>"><br>
@@ -42,8 +42,9 @@
         Location: <input required type="text" name="court" value="<%=event.court%>"><br>
         <input type="submit" name="" value="Push the Edits"/>
     </form>
-    <% } %>
-
+    <% } else { %>
+        <h2> You are not authorized to edit this event. Please contact the event creator for further details</h2>
+        <% } %>
     <%- include('../partials/footer.ejs') %>
 </body>
 </html>

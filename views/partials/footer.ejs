@@ -1,13 +1,14 @@
 <footer>
     <h2>&copy; 2024 Time to Tennis</h2>
     <nav>
+        <link rel="stylesheet" href="/styles/nav.css">
         <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/courts">Reserve a court</a></li>
+          <a href="/">Home</a></li>
+          <a href="/courts">Reserve a court</a></li>
             <% if (currentMember) { %>
-                <li><a href="/members/<%=currentMember._id%>">My Account</a></li>
+               <a href="/members/<%=currentMember._id%>">My Account</a></li>
             <%  } else { %>
-                <li><a href="/sessions/new">Log In</a></li>
+                <a href="/sessions/new">Log In</a></li>
             <% } %>
         </ul>
     </nav>

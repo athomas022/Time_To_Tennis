@@ -1,19 +1,19 @@
 <header>
     <h1>Time To Tennis</h1>
     <nav>
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/courts">Reserve a court</a></li>
-            <li><a href="/groups">Join a group</a></li>
+
+            <a href="/">Home</a></li>
+            <a href="/courts">Reserve a court</a>
+            <a href="/groups">Join a group</a>
             <% if (currentMember) { %>
-            <h2>Welcome <%= currentMember.username %></h2>
-            <li><a href="/members/<%= currentMember._id %>/edit">Edit My Account</a></li>
-            <li><form action="/sessions/?_method=DELETE" method="POST">
+            <h4>Welcome <%= currentMember.username %></h4>
+            <a href="/members/<%= currentMember._id %>/edit">Edit My Account</a>
+           <form action="/sessions/?_method=DELETE" method="POST">
              <input type ="submit" value="Logout"/> 
-            </form></li>
+            </form>
         <%  } else { %>
-        <li><a class="nav-link" href="/sessions/members/new">Sign up</a></li>
-        <li><a class="nav-link" href="/sessions/new">Log In</a></li>
+        <a class="nav-link" href="/sessions/members/new">Sign up</a>
+        <a class="nav-link" href="/sessions/new">Log In</a>
         <% } %>
         </ul>
     </nav>

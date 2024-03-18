@@ -31,13 +31,27 @@ router.delete("/:id", (req, res) => {
     });
 
 //EVENTS UPDATE ROUTE
-router.put("/:id", async (req, res) => {
-    const newEventInfo = {...req.body, created_by: currentMember._id}
-    await Events.findByIdAndUpdate(req.params.id, newEventInfo, {new: true})
-     console.log(newEventInfo)
+router.put("/:id/edit", async (req, res) => {
+    const updateEventInfo = {...req.body, created_by: currentMember._id}
+    await Events.findByIdAndUpdate(req.params.id, updateEventInfo, {new: true})
      .then((event) => res.redirect("/events/"+ req.params.id )
      );
    });
+//EVENTS REGISTERATION ROUTE
+router.put("/:id/register", function (req, res) {
+//When I click the /id/join, I want to delect the count of the slots in the event...
+Events.findByIdAndUpdate(req.params.id, {$inc: {event_slots: -1}}, {new:true})// debugged with chatgpt
+    .then((updatedEvent) => {
+// .. and add the event to the members collection for a member
+Members.findOneAndUpdate({_id: currentMember._id}, {$addToSet: {event_reservation: req.params.id}}, {new:true})
+    .then((updatedMember) => {
+         res.redirect("/events/"+ req.params.id)
+        })
+    .catch((err) => res.send("The member was not updated"))
+    })
+.catch((err)=> res.send("The group's open slot was not updated"))
+
+})
  
 //EVENTS CREATE ROUTE
 router.post('/', async (req, res) => {
@@ -57,16 +71,33 @@ router.get("/:id/edit", (req, res) => {
     Events.findById(req.params.id)
     // console.log(req.params.id)
     .then((event) => {
+        console.log(event._id)
     currentMember = req.session.currentMember
     if(!event.created_by === currentMember._id){
         res.send("Not authorized to edit the event")
     }
       res.render("events/edit.ejs", {
         event: event,
-        currentMember: req.session.currentMember 
+        currentMember: req.session.currentMember,
+        id: event._id.toString(),
       });
     });
   });
+
+//EDIT ROUTE FOR THE RESERVATIONS
+  router.get("/:id/register", (req, res) => {
+    Events.findById(req.params.id)
+    // console.log(req.params.id)
+    .then((event) => {
+    currentMember = req.session.currentMember
+    res.render("events/register.ejs", {
+        event: event,
+        currentMember: req.session.currentMember,
+        id: event._id.toString(),
+    })
+})
+  })
+
 
 //EVENTS SHOW ROUTE
 

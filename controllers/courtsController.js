@@ -22,5 +22,9 @@ router.get('/:id', function (req, res) {
         .catch(() => res.send('404 Error: Page Not Found'))
         })
 
+//COURTS SHOW PAGE
+router.get('/reserve/:id', function (req, res) {
+res.send(`Sorry, but this page is under construction. Contact your group admin for further details on how to reserve the courts`)
+})
 
 module.exports = router
