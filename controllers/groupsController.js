@@ -103,26 +103,24 @@ router.get("/:id/join", (req, res) => {
                 .then(group=> {
                     Members.findById(group.group_admin, {member_name: true})
                         .then(groupAdminMember => {
-                            Members.find({_id: {$in: group.group_member_directory}}, {member_name: true}) // debugged this using chatGPT as its an array of objects
-                            .then(groupMemberDirectory => {
-                            Courts.find({_id: {$in: group.group_courts}}, {club_name: true})// debugged this using chatGPT as its an array of objects
-                            .then(groupCourts => { 
-                                Events.find({_id: {$in: group.group_upcoming_events}}, {event_name: true})// debugged this using chatGPT as this is an array of objects
-                                .then(groupEvents => {
+                            Promise.all([ //Debuggeed the array for the potentially no values being populated using chatGpt and MDN documentation
+                            group.group_member_directory ? Members.find({ _id: { $in: group.group_member_directory } }, { member_name: true }) : [],
+                            group.group_courts ? Courts.find({ _id: { $in: group.group_courts } }, { club_name: true }) : [],
+                            group.group_upcoming_events ? Events.find({ _id: { $in: group.group_upcoming_events } }, { event_name: true }) : []
+                        ])
+                                .then(([groupMemberDirectory, groupCourts, groupEvents]) => {
                                 res.render("groups/show.ejs", {
                                 group: group,
                                 groupAdmin: groupAdminMember,
-                                groupMemberDirectory: groupMemberDirectory.map(member =>member.member_name),// debugged this using chatGPT as its an array of objects
-                                groupCourts: groupCourts.club.map(court=> court.club_name),
-                                groupEvents: groupEvents.event.map(event=> event.event_name),
+                                groupMemberDirectory: groupMemberDirectory.map(member =>member.member_name),// debugged this using chatGPT to introduce the map function as its an array of objects
+                                groupCourts: groupCourts.club.map(court=> court.club_name),// debugged this using chatGPT to introduce the map function as its an array of objects
+                                groupEvents: groupEvents.event.map(event=> event.event_name),// debugged this using chatGPT to introduce the map function as its an array of objects
                                 currentMember: req.session.currentMember,
                             });
-                        }).catch((err) => res.send(`You've got an ${err} error`))
+                        })
+                    }).catch((err) => res.send(`You've got an ${err} error`))
             })
                 .catch((err) => res.send(`You've got an ${err} error`))
-                }).catch((err) => res.send(`You've got an ${err} error`))
-            }).catch((err) => res.send(`You've got an ${err} error`))
-        }).catch((err) => res.send(`You've got an ${err} error`))
-    })
+        })
 
 module.exports = router
