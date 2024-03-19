@@ -21,6 +21,12 @@
             <p><strong>Announcements:</strong> <%= `${group.announcements}.`%></p>
             <p>For further details, get in touch with <%=`${groupAdmin}` %></p>          
             <a href="/groups/<%=group._id %>/join?_method=PUT">Join the group</a>
+            <p><% if (groupAdmin === currentMember.member_name){ %>
+                <form action="/groups/<%=group._id %>/edit" method="get">
+                    <input type="submit" value="EDIT"/>
+                </form>
+                <% } %>
+
         </section>
     </div>
 

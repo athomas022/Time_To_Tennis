@@ -11,8 +11,8 @@
     <section class="header">
         <h2>Edit your group</h2>
     </section>
-    <% if (event.created_by.toString() === currentMember._id.toString()){ %>
-    <form method="POST" action="/groups/<%=group._id %>/edit?_method=PUT"></form>
+    <% if (group.group_admin.toString() === currentMember._id.toString()){ %>
+    <form method="POST" action="/groups/<%=group._id %>/edit?_method=PUT">
         Name: <input required type="text" name="group_name" value="<%=group.group_name %>"><br>
         Description: <input required type="text" name="group_description" value="<%=group.group_description %>"><br>
         Type: <input required type="text" name="group_type" value="<%=group.group_type %>"><br>
@@ -25,6 +25,12 @@
         Zip code: <input required type="text" name="zip_code" value="<%=group.zip_code%>"><br>
         <input type="submit" name="" value="Push the Edits"/>
     </form>
+    <p><strong>Delete My Group</strong>
+        <form action="/groups/<%= group._id %>?_method=DELETE" method="post">
+            <input type="submit" value="DELETE"/>
+        </form>
+    </p>
+
     <% } else { %>
      <h2> You are not authorized to edit this group. Please contact your group admin</h2>
      <% } %>

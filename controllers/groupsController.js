@@ -5,6 +5,7 @@ const Courts = require("../models/courts");
 const Members = require("../models/members");
 const express = require('express');
 const router = express.Router();
+const { ObjectId } = require('mongoose');//Debugged with chatgpt
 
 
 
@@ -33,10 +34,11 @@ router.delete("/:id", (req, res) => {
     });
 
 //GROUPS UPDATE ROUTE 
-   router.put("/:id", async (req, res) => {
-    const updateGroupInfo = {...req.body, group_admin: currentMember._id}
-    await Groups.findByIdAndUpdate(req.params.id, updateGroupInfo, {new: true})
-     console.log(updateGroupInfo)
+   router.put("/:id/edit", function (req, res) {
+    const updatedMemberDirectory = req.body.group_member_directory.split(',').map(_id => new ObjectId(_id))// Added the piece of the code to convert to the object from a string from debugging with Chatgpt
+    const updateGroupInfo = {...req.body, group_member_directory: updatedMemberDirectory} // Added the piece of the code to convert to the object from a string from debugging with Chatgpt
+    console.log(updateGroupInfo)
+    Groups.findByIdAndUpdate(req.params.id, updateGroupInfo, {new: true})
      .then((group) => res.redirect("/groups/"+ req.params.id )
      );
    });
@@ -74,7 +76,7 @@ router.get("/:id/edit", (req, res) => {
     Groups.findById(req.params.id)
     // console.log(req.params.id)
     .then((group) => {
-    if(!group.group_admin === currentMember._id){
+    if(!group.group_admin === req.session.currentMember._id){
         res.send("Not authorized to make an edit to this page")
     }
       res.render("groups/edit.ejs", {

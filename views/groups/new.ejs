@@ -9,18 +9,20 @@
 <body>
     <%- include('../partials/nav.ejs') %>
     <h1>Sign Up</h1>
-     <form action="/events/new" method="POST">
-        Name: <input required type="text" name="group_name" value="<%=group.group_name %>"><br>
-        Description: <input required type="text" name="group_description" value="<%=group.group_description %>"><br>
-        Type: <input required type="text" name="group_type" value="<%=group.group_type %>"><br>
-        Membership Criteria <input required type="text" name="group_membership_criteria" value="<%=group.group_membership_criteria%>"><br>
-        Group courts <input required type="text" name="group_group_courts" value="<%=group.group_courts%>"><br>
-        Members: <input required type="text" name="group_member_directory" value="<%=group.group_member_directory%>"><br>
-        Upcoming Events: <input required type="text" name="group_upcoming_events" value="<%=group.group_upcoming_events%>"><br>
-        Rules: <input required type="text" name="group_rules" value="<%=group.group_rules%>"><br>
-        Announcements: <input required type="text" name="announcements" value="<%=group.announcements%>"><br>
-        Zip code: <input required type="text" name="zip_code" value="<%=group.zip_code%>"><br>
+     <form action="/groups/new" method="POST">
+        Name: <input required type="text" name="group_name"><br>
+        Description: <input required type="text" name="group_description"><br>
+        Type: <input required type="text" name="group_type"><br>
+        Membership Criteria <input required type="text" name="group_membership_criteria" ><br>
+        Group courts <input required type="text" name="group_group_courts"><br>
+        Members: <input required type="text" name="group_member_directory"><br>
+        Upcoming Events: <input required type="text" name="group_upcoming_events"><br>
+        Rules: <input required type="text" name="group_rules"><br>
+        Announcements: <input required type="text" name="announcements"><br>
+        Zip code: <input required type="text" name="zip_code"><br>
         <input type="submit" name="" value="Create a group"/>
+
+
     </form>
     <%- include('../partials/footer.ejs') %>
 </body>

@@ -13,9 +13,9 @@
         <h2 class="members"><%= currentMember.member_name %></h2>
         <section>
             <p><strong>My Membership:</strong> <%= `${currentMember.membership_type}` %></p>
-            <p><strong>My Groups:</strong> <%= `${currentMember.member_groups}`%></p>
-            <p><strong>My Events</strong> <%= `${currentMember.court_reservation}` %></p>
-            <p><strong>My Court Reservations</strong> <%= `${currentMember.event_reservation}` %></p>
+            <p><strong>My Groups:</strong> <%= `${groups}`%></p>
+            <!-- <p><strong>My Court Reservation:</strong> <%= `${currentMember.court_reservation}` %></p> -->
+            <p><strong>My Event Reservations:</strong> <%= `${events}` %></p>
             <p><strong>Edit My Account</strong><a href="/members/<%= currentMember._id %>/edit">Edit</a></p>
             <p><strong>Delete My Account</strong>
                 <form action="/members/<%= currentMember._id %>?_method=DELETE" method="post">

@@ -1,4 +1,6 @@
 const {Members} = require('../config/database');
+const Events = require('../models/events');
+const Groups = require('../models/groups');
 const members = require('../models/members');
 const express = require('express');
 const router = express.Router();
@@ -55,11 +57,20 @@ router.get("/:id/edit", (req, res) => {
 router.get('/:id', function (req, res) {
     Members.findById(req.params.id)
         .then(member => {
+            Promise.all([ 
+                            member.member_groups ? Groups.find({ _id: { $in: member.member_groups} }, { group_name: true }) : [],
+                            member.event_reservation ? Events.find({ _id: { $in: member.event_reservation } }, { event_name: true }) : []
+                        ])
+                        .then(([memberGroups, memberEvents]) => {
             res.render("members/show.ejs", {
                 member:member,
-                currentMember: req.session.currentMember});
+                currentMember: req.session.currentMember,
+                groups: memberGroups.map(group => group.group_name),
+                events: memberEvents.map(event => event.event_name),
+            });
             })
         .catch(() => res.send('404 Error: Page Not Found'))
+})
 })
 
 module.exports = router
