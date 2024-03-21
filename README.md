@@ -1,11 +1,11 @@
 # Unit 2 Project - Time to Tennis
-Access this app on [Heroku](https://git.heroku.com/general-assemby-time-to-tennis.git/)
+Access this app on [Heroku](https://general-assemby-time-to-tennis-4e548f76d88c.herokuapp.com)
 
 ## Technologies Used
 Node.js, EJS, Express, MangoDB
 
 ## Installation Instructions
-Access this app on [Heroku](https://git.heroku.com/general-assemby-time-to-tennis.git/)
+Access this app on [Heroku](https://general-assemby-time-to-tennis-4e548f76d88c.herokuapp.com)
 
 ## User Stories
 - As a tennis enthusiast, I want to be to access the landing page of the "Time to Tennis" app on a web-browser and be able to understand the different features of the app.
